@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  backend:
+    build: ../backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///ziva_expenses.db
+    volumes:
+      - ../backend/app/static_uploads:/app/app/static_uploads
+  frontend:
+    build: ../frontend
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_API_BASE=http://localhost:8000
